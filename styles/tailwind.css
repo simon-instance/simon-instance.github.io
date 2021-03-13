@@ -1,0 +1,15 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+@font-face {
+  font-family: "Daddy Rewind";
+  src: url("../public/fonts/DaddyRewind-MVYAP.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Nunito Bold";
+  src: url("../public/fonts/Nunito-Bold.ttf") format("truetype");
+}

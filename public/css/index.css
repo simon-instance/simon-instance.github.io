@@ -1,0 +1,11 @@
+#infoBox > #infoButton:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(99, 102, 241, var(--tw-bg-opacity))
+}
+
+#infoBox > #infoButton {
+  border-radius: 0px;
+  --tw-shadow: 0 0 #0000;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  width: 100%
+}

@@ -1,0 +1,3 @@
+#infoBox > #infoButton {
+  @apply w-full rounded-none hover:bg-indigo-500 shadow-none;
+}

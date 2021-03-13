@@ -1,45 +1,25 @@
 {
-  "name": "simon-instance.github.io",
+  "name": "portfolio",
   "version": "1.0.0",
-  "description": "Simon's personal portfolio",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "next dev",
-    "build": "next build && next export",
-    "start": "next start",
-    "export": "next export",
-    "deploy": "rm -rf node_modules/.cache && touch out/.nojekyll && gh-pages -d out"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/simon-instance/simon-instance.github.io.git"
   },
-  "author": "Simon Peters",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/simon-instance/simon-instance.github.io/issues"
   },
   "homepage": "https://github.com/simon-instance/simon-instance.github.io#readme",
   "devDependencies": {
-    "@types/node": "^14.14.19",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "autoprefixer": "^10.1.0",
-    "cssnano": "^4.1.10",
-    "postcss": "^8.2.2",
-    "postcss-import": "^14.0.0",
-    "postcss-preset-env": "^6.7.0",
-    "tailwindcss": "^2.0.2",
-    "typescript": "^4.1.3"
-  },
-  "dependencies": {
-    "gh-pages": "^3.1.0",
-    "next": "^10.0.4",
-    "next-themes": "0.0.10",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-icons": "^4.1.0",
-    "sass": "^1.32.0"
+    "autoprefixer": "^10.2.5",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.0.3"
   }
 }
