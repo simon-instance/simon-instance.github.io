@@ -1,0 +1,90 @@
+<Nav {active} />
+
+<main id="test">
+	<svelte:component this={Route} {params} />
+</main>
+
+<script>
+	import Navaid from 'navaid';
+	import { onDestroy } from 'svelte';
+	import Nav from './Nav.svelte';
+
+	localStorage.theme ||= 'dark';
+	localStorage.theme === 'dark' ? document.body.classList.add('dark') : document.body.classList.remove('dark');
+
+	let Route, params={}, active;
+	let uri = location.pathname;
+	$: active = uri || '/';
+
+	const run = (thunk, obj) => {
+		const target = uri;
+		thunk.then(m => {
+			if (target !== uri) return;
+			params = obj || {};
+			if (m.preload) {
+				m.preload({ params }).then(() => {
+					if (target !== uri) return;
+					Route = m.default;
+					window.scrollTo(0, 0);
+				});
+			} else {
+				Route = m.default;
+				window.scrollTo(0, 0);
+			}
+		});
+	};
+
+	const track = (obj) => {
+		uri = obj.state || obj.uri || location.pathname;
+		if (window.ga) ga.send('pageview', { dp:uri });
+	}
+
+	addEventListener('replacestate', track);
+	addEventListener('pushstate', track);
+	addEventListener('popstate', track);
+	const router = Navaid('/')
+		.on('/', () => run(import('./routes/Home.svelte')))
+		.on('/about', () => run(import('./routes/About.svelte')))
+		.listen();
+
+	onDestroy(router.unlisten);
+</script>
+
+<style global type="text/css" lang="postcss">
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+	
+	body.dark {
+		background: #080520;
+	}
+
+	p, div, span, a {
+		@apply dark:text-white text-xl;
+	}
+	p {
+		@apply dark:text-gray-300 text-gray-600 leading-relaxed;
+	}
+	h1 {
+		@apply dark:text-white text-3xl;
+	}
+	h2 {
+		@apply dark:text-white text-2xl;
+	}
+	h3 {
+		@apply dark:text-white text-xl;
+	}
+	button {
+		@apply bg-indigo-600 hover:bg-indigo-300 dark:bg-indigo-900 dark:hover:bg-indigo-600 transition duration-300 ease-in-out py-2 px-4 text-xl rounded shadow-lg text-white;
+	}
+	a {
+		@apply bg-white justify-items-center my-5 cursor-pointer dark:bg-transparent transition duration-300 ease-in-out py-2 px-4 text-lg rounded text-black dark:text-white;
+		position: relative;
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+	}
+
+</style>
