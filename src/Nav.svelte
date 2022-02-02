@@ -107,12 +107,14 @@ nav #sub-nav ul li button {
 button.top-button {
   @apply bg-indigo-600 dark:bg-indigo-900 dark:hover:bg-indigo-600 transition duration-300 ease-in-out py-2 px-4 text-xl text-white w-full rounded-none hover:bg-indigo-500 shadow-none block;
 }
+
 </style>
 
 <script>
 import { onMount } from "svelte";
-import WiMoonAltFirstQuarter from "svelte-icons/wi/WiMoonAltFirstQuarter.svelte";
-import FaBars from "svelte-icons/fa/FaBars.svelte";
+import Fa from "svelte-fa";
+import { faMoon } from "@fortawesome/free-solid-svg-icons"
+import { Menu } from "svelte-grommet-icons";
 
 const navItems = [
   {
@@ -180,14 +182,14 @@ $: isActive = (str) => active === str && "selected";
         <button
           on:click="{toggleTheme}"
           class="nav-button"
-          aria-label="dark theme toggler"><WiMoonAltFirstQuarter /></button>
+          aria-label="dark theme toggler"><Fa icon={faMoon} /></button>
       </li>
 
       <li class="mobile-menu">
         <button
           on:click="{toggleMobileNav}"
           class="nav-button"
-          aria-label="mobile navigation"><FaBars /></button>
+          aria-label="mobile navigation"><Menu /></button>
       </li>
     </ul>
   </div>

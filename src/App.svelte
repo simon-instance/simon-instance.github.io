@@ -52,6 +52,11 @@ img {
   height: 100%;
 }
 
+svg {
+  display: block;
+  margin: auto;
+}
+
 .has-dark-mode {
   @apply rounded border border-gray-400 dark:hover:border-indigo-600 dark:hover:bg-indigo-600 hover:border-indigo-400 hover:bg-indigo-300 shadow-lg;
 }

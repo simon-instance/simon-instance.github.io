@@ -16,19 +16,23 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@snowpack/plugin-build-script": "^2.1.0",
+    "@snowpack/plugin-svelte": "^3.6.1",
     "autoprefixer": "^10.2.5",
+    "gh-pages": "^3.1.0",
+    "lodash": "^4.17.21",
     "postcss": "^8.2.9",
     "postcss-cli": "^8.3.1",
     "snowpack": "^3.2.2",
-    "tailwindcss": "^2.1.1",
-    "@snowpack/plugin-build-script": "^2.1.0",
-    "@snowpack/plugin-svelte": "^3.6.1",
-    "gh-pages": "^3.1.0",
-    "lodash": "^4.17.21",
     "svelte": "^3.37.0",
-    "svelte-icons": "^2.1.0",
+    "svelte-fa": "^2.4.0",
     "svelte-loader": "^3.1.0",
     "svelte-navaid": "^0.1.1",
-    "svelte-preprocess": "^4.7.0"
+    "svelte-preprocess": "^4.7.0",
+    "tailwindcss": "^2.1.1"
+  },
+  "devDependencies": {
+    "svelte-grommet-icons": "^0.2.0"
   }
 }

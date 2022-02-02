@@ -49,9 +49,9 @@ footer div.scroll-up {
 </style>
 
 <script>
-import FaSpotify from "svelte-icons/fa/FaSpotify.svelte";
-import FaChevronUp from "svelte-icons/fa/FaChevronUp.svelte";
+import { Spotify } from "svelte-grommet-icons";
 import get from "lodash/get";
+import { onMount } from "svelte";
 
 let promise = Promise.resolve([]);
 
@@ -81,6 +81,19 @@ promise = (async () => {
   if (request.ok) return songData;
   else if (!request.ok) throw response;
 })();
+
+const refreshUpArrow = () => {
+  const elem = document.getElementById("upArrow");
+  elem.style.filter = localStorage.theme === "dark"
+    ? 'invert(100%)'
+    : '';
+}
+
+const observer = new MutationObserver(refreshUpArrow)
+observer.observe(document.body, { attributes: true });
+onMount(async() => {
+  refreshUpArrow();
+});
 </script>
 
 <footer>
@@ -91,7 +104,7 @@ promise = (async () => {
       {:then song}
         <div class="spotify-icon">
           <div class="spotify">
-            <FaSpotify />
+            <Spotify />
           </div>
         </div>
         <div class="song-data">
@@ -111,7 +124,7 @@ promise = (async () => {
     </div>
 
     <div class="scroll-up" on:click="{() => window.scrollTo(0, 0)}">
-      <FaChevronUp />
+      <img id="upArrow" src="img/chevron-up.png" alt="chevron_up">
     </div>
   </div>
 </footer>
