@@ -56,13 +56,12 @@ p {
 <div id="wrapper">
   <h1 class="pageTitle">About</h1>
   <p class="mb-3">
-    Mijn naam is Simon, ik ben een achttien jarige student studerend op het
-    Technovium in Nijmegen. In deze stad ben ik opgegroeid, deze stad heeft mij
-    gevormd tot wie ik nu ben.
+    Mijn naam is Simon, ik ben een negentien jarige student, studerend aan de HAN in nijmegen.
   </p>
+  <h2>ROC</h2>
   <p>
     Binnen mijn opleiding heb ik veel geleerd. Sinds ik ~16 was begon ik
-    techniek steeds leuker te vinden. Uiteindelijk heb ik daarom ook besloten
+    techniek leuker te vinden. Uiteindelijk heb ik daarom ook besloten
     een technische opleiding te volgen.
   </p>
   <p>
@@ -74,10 +73,25 @@ p {
 
   <div class="pseudo-wrapper">
     <figcaption class="mt-5">
-      <small class="caption">Afbeelding van mijn school</small>
+      <small class="caption">Afbeelding van het ROC</small>
     </figcaption>
     <div class="school-image-wrapper">
       <img src="../../img/school.jpg" alt="My school" class="school-image" />
+    </div>
+  </div>
+
+  <h1>HAN</h1>
+  <p>
+    Op deze school studeer ik momenteel. Tot nu toe heb ik de vakken PHP, Java en C gehad.
+    Van deze vakken vind ik C en PHP het leukst. C leer ik nu omdat ik op dit moment bezig ben met Arduino's. 
+  </p>
+
+  <div class="pseudo-wrapper">
+    <figcaption class="mt-5">
+      <small class="caption">Afbeelding van de HAN</small>
+    </figcaption>
+    <div class="school-image-wrapper">
+      <img src="../../img/school2.jpg" alt="My second school" class="school-image" />
     </div>
   </div>
 
