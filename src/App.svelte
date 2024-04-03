@@ -16,7 +16,7 @@
 }
 
 body.dark {
-  background: #080520;
+  background: #000;
 }
 
 p,
@@ -25,8 +25,7 @@ span,
 a {
   @apply dark:text-white text-xl;
 }
-p,
-.scroll-up {
+p {
   @apply dark:text-gray-300 text-gray-600 leading-relaxed;
 }
 h1 {
@@ -56,67 +55,22 @@ svg {
   display: block;
   margin: auto;
 }
-
-.has-dark-mode {
-  @apply rounded border border-gray-400 dark:hover:border-indigo-600 dark:hover:bg-indigo-600 hover:border-indigo-400 hover:bg-indigo-300 shadow-lg;
-}
 </style>
 
 <script>
-import Navaid from "navaid";
-import { onDestroy } from "svelte";
 import Nav from "./Nav.svelte";
-import Footer from "./Footer.svelte";
+import Home from "./components/Home.svelte";
 
 localStorage.theme ||= "dark";
 localStorage.theme === "dark"
   ? document.body.classList.add("dark")
   : document.body.classList.remove("dark");
 
-let Route,
-  params = {},
-  active;
-let uri = location.pathname;
-$: active = uri || "/";
-
-const run = (thunk, obj) => {
-  const target = uri;
-  thunk.then((m) => {
-    if (target !== uri) return;
-    params = obj || {};
-    if (m.preload) {
-      m.preload({ params }).then(() => {
-        if (target !== uri) return;
-        Route = m.default;
-        window.scrollTo(0, 0);
-      });
-    } else {
-      Route = m.default;
-      window.scrollTo(0, 0);
-    }
-  });
-};
-
-const track = (obj) => {
-  uri = obj.state || obj.uri || location.pathname;
-  if (window.ga) ga.send("pageview", { dp: uri });
-};
-
-addEventListener("replacestate", track);
-addEventListener("pushstate", track);
-addEventListener("popstate", track);
-const router = Navaid("/")
-  .on("/", () => run(import("./routes/Home.svelte")))
-  .on("/about", () => run(import("./routes/About.svelte")))
-  .listen();
-
-onDestroy(router.unlisten);
 </script>
 
-<Nav active="{active}" />
+<Nav/>
 
 <main>
-  <svelte:component this="{Route}" params="{params}" />
+  <Home/>
 </main>
 
-<Footer />

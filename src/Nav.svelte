@@ -1,6 +1,6 @@
 <style global lang="postcss">
 .brand {
-  @apply my-auto font-rewind text-5xl md:mr-52 xl:mr-64 mr-auto;
+  @apply my-auto text-5xl md:mr-52 xl:mr-64 mr-auto;
 }
 
 li {
@@ -8,7 +8,9 @@ li {
 }
 
 nav {
-  @apply py-9 bg-gradient-to-b from-indigo-navbarLight to-indigo-navbarLightGradient dark:from-indigo-navbar dark:to-indigo-navbarGradient flex flex-col justify-evenly justify-items-center  px-8;
+  @apply py-3 bg-gradient-to-b from-gray-navbarLight to-gray-navbarLightGradient dark:from-gray-navbar dark:to-gray-navbarGradient 
+    flex flex-col justify-evenly justify-items-center px-8;
+  border-bottom: 2px solid rgba(255,255,255,.10);
   position: sticky;
   z-index: 4;
   top: -0.1px;
@@ -59,13 +61,13 @@ nav #sub-nav ul li.mobile-menu {
 }
 
 nav #sub-nav ul li.spacer {
-  @apply h-1/3 bg-gray-600 opacity-30 dark:bg-indigo-400;
+  @apply h-1/3 bg-gray-300 opacity-30 dark:bg-gray-500;
   margin: 30px 20px 0 8px;
   width: 1px;
 }
 
 nav #sub-nav ul li button {
-  @apply my-5 px-3 shadow-none rounded sm:bg-gray-200 sm:dark:bg-indigo-700 bg-transparent;
+  @apply my-5 px-3 shadow-none bg-transparent;
   width: 50px;
   height: 50px;
 }
@@ -75,37 +77,13 @@ nav #sub-nav ul li button {
   display: inline-block;
 }
 
-.nav-part ul li a:after {
-  @apply bg-gray-400 dark:bg-indigo-600 opacity-0;
-  position: absolute;
-  content: "";
-  height: 2px;
-  border-radius: 0px 0px 2px 2px;
-  width: 100%;
-  left: 0;
-  bottom: -4px;
-  transition: all ease-in-out 0.5s;
-}
-
 .nav-part ul li a:hover:after {
   bottom: 0px;
   opacity: 1;
 }
 
-.nav-part ul li a.selected {
-  @apply cursor-default bg-gray-200 dark:bg-indigo-700;
-}
-
-.nav-part ul li a.selected:hover:after {
-  opacity: 0;
-}
-
 .nav-part ul li a.mobile-nav-item {
   @apply my-1;
-}
-
-button.top-button {
-  @apply bg-indigo-600 dark:bg-indigo-900 dark:hover:bg-indigo-600 transition duration-300 ease-in-out py-2 px-4 text-xl text-white w-full rounded-none hover:bg-indigo-500 shadow-none block;
 }
 
 </style>
@@ -119,28 +97,13 @@ import { Menu } from "svelte-grommet-icons";
 const navItems = [
   {
     name: "Home",
-    uri: "/",
+    scrollTarget: "#home",
   },
   {
     name: "About",
-    uri: "/about",
+    uri: "#about",
   },
 ];
-
-onMount(() => {
-  const observer = new IntersectionObserver(
-    ([e]) => {
-      e.target.classList.toggle("nav-sticky", e.intersectionRatio < 1);
-      e.target.nextElementSibling.classList.toggle(
-        "stay-fixed-sticky",
-        e.intersectionRatio < 1
-      );
-    },
-    { threshold: [1] }
-  );
-
-  observer.observe(document.getElementById("nav"));
-});
 
 function toggleTheme() {
   localStorage.theme = localStorage.theme === "light" ? "dark" : "light";
@@ -158,22 +121,15 @@ function toggleMobileNav() {
   }
 }
 
-export let active;
-
-$: isActive = (str) => active === str && "selected";
 </script>
 
-<button
-  aria-label="Show work experience"
-  class="top-button"
-  on:click="{() => window.open('./img/cv.pdf')}">Bekijk CV</button>
 <nav id="nav">
   <div id="sub-nav" class="nav-part">
     <h1 class="brand">Simon</h1>
     <ul id="ul">
       {#each navItems as navItem}
         <li class="nav-item">
-          <a class="{isActive(navItem.uri)}" href="{navItem.uri}"
+          <a href="{navItem.scrollTarget}"
             ><p>{navItem.name}</p></a>
         </li>
       {/each}
@@ -199,8 +155,8 @@ $: isActive = (str) => active === str && "selected";
         <li class="nav-item">
           <a
             on:click="{toggleMobileNav}"
-            class="{isActive(navItem.uri)} mobile-nav-item"
-            href="{navItem.uri}"><p>{navItem.name}</p></a>
+            class="mobile-nav-item"
+            href="{navItem.scrollTarget}"><p>{navItem.name}</p></a>
         </li>
       {/each}
     </ul>

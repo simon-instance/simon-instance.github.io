@@ -9,6 +9,9 @@ module.exports = {
   theme: {
     container: {
       center: true,
+      padding: {
+        DEFAULT: "15rem"
+      }
     },
     fontSize: {
       xs: ".75rem",
@@ -26,12 +29,11 @@ module.exports = {
     },
     extend: {
       colors: {
-        indigo: {
-          1000: "#080520",
-          navbar: "rgba(8,5,32,.97)",
-          navbarGradient: "rgba(8,5,32,.55)",
+        gray: {
+          navbar: "rgba(19,19,19,.97)",
+          navbarGradient: "rgba(19,19,19,.45)",
           navbarLight: "rgba(255,255,255,.90)",
-          navbarLightGradient: "rgba(255,255,255,.55)",
+          navbarLightGradient: "rgba(255,255,255,.25)",
         },
       },
       fontFamily: {

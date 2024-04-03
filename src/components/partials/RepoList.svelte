@@ -82,7 +82,7 @@ onMount(() => {
 });
 </script>
 
-<a id="wrapper-link" href="#wrapper"><h2 class="title">Projecten</h2></a>
+<a id="wrapper-link" href="#wrapper"><h2 class="title">Projects</h2></a>
 <div id="wrapper">
   {#await promise}
     <p class="waitingOrFailed">Loading repositories...</p>
