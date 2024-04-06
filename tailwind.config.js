@@ -34,6 +34,8 @@ module.exports = {
           navbarGradient: "rgba(19,19,19,.45)",
           navbarLight: "rgba(255,255,255,.90)",
           navbarLightGradient: "rgba(255,255,255,.25)",
+          navbarBorderLight: "rgba(0,0,0,.1)",
+          navbarBorder: "rgba(255,255,255,.1)"
         },
       },
       fontFamily: {

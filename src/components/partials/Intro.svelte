@@ -8,17 +8,34 @@
     overflow: hidden;
   }
 
-  .wrench-container {
+  body.dark * .wrench-container {
     background: radial-gradient(#334466, #213151, #111525, #000, #000);
+  }
+  .wrench-container {
+    background: transparent;
+  }
+
+  body.dark * .alternative {
+    background: #121212;
+    box-shadow: none; 
   }
 
   .alternative {
-    background: #121212;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0em 0em .5em 0em rgba(150, 80, 255, .3);
   }
 
   img {
     transform: scale(.7);
     z-index: 0;
+  }
+
+  body.dark * .html-tag {
+    filter: invert(0);
+  }
+  .html-tag {
+    filter: invert(1);
   }
 
   .sphere-1 {
@@ -37,11 +54,20 @@
     bottom: -450px;
   }
 
-  .purple-sphere {
+  body.dark * .purple-sphere {
     position: absolute;
     border-radius: 25px 25px 25px;
 
     background: radial-gradient(#5500aa,  #330066, #131313,  #121212);
+    z-index: -1;
+    opacity: .7;
+  }
+
+  .purple-sphere {
+    position: absolute;
+    border-radius: 25px 25px 25px;
+
+    background: radial-gradient(#aa77dd,  #eeccff, #fff,  #fff);
     z-index: -1;
     opacity: .7;
   }
@@ -65,7 +91,7 @@
       </div>
       <div class="flex-1 flex justify-center items-center">
         <div class="mx-10 my-auto wrench-container">
-          <img src="../img/wrench-tag.png" alt="tag">
+          <img class="html-tag" src="../img/wrench-tag.png" alt="tag">
         </div>
       </div>
     </div>
@@ -73,7 +99,6 @@
       <div class="inline-block">
         <div class="purple-sphere sphere-1"></div>
         <div class="purple-sphere sphere-2"></div>
-        <div class="purple-sphere sphere-3"></div>
       </div>
       <div class="flex-1 ml-12 mr-20 my-auto">
         <img src="../img/ethereum.png" alt="tag">

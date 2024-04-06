@@ -7,10 +7,14 @@ li {
   @apply block float-left;
 }
 
+.dark nav {
+  border-bottom: 1px solid rgba(255,255,255,0.01);
+}
+
 nav {
   @apply py-3 bg-gradient-to-b from-gray-navbarLight to-gray-navbarLightGradient dark:from-gray-navbar dark:to-gray-navbarGradient 
-    flex flex-col justify-evenly justify-items-center px-8;
-  border-bottom: 2px solid rgba(255,255,255,.10);
+    flex flex-col justify-evenly justify-items-center px-8 shadow drop-shadow-sm;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
   position: sticky;
   z-index: 4;
   top: -0.1px;
@@ -89,7 +93,6 @@ nav #sub-nav ul li button {
 </style>
 
 <script>
-import { onMount } from "svelte";
 import Fa from "svelte-fa";
 import { faMoon } from "@fortawesome/free-solid-svg-icons"
 import { Menu } from "svelte-grommet-icons";
