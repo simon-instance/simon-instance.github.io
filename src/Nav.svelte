@@ -1,6 +1,6 @@
 <style global lang="postcss">
 .brand {
-  @apply my-auto text-5xl md:mr-52 xl:mr-64 mr-auto;
+  @apply my-auto text-5xl md:mr-0 xl:mr-64 mr-auto;
 }
 
 li {
@@ -24,16 +24,11 @@ nav {
 }
 
 #sub-nav {
-  @apply flex justify-evenly justify-items-center;
+  @apply md:flex hidden justify-evenly justify-items-center;
 }
 
 .mobile-navbar {
-  @apply flex sm:hidden;
-  overflow: hidden;
-  position: sticky;
-  min-height: 0px;
-  height: 0px;
-  transition: ease all 0.5s;
+  @apply md:hidden  flex justify-between;
 }
 
 .nav-sticky {
@@ -60,9 +55,9 @@ nav #sub-nav ul li.spacer {
   @apply hidden sm:block;
 }
 
-.nav-item .mobile-nav-item {
-  @apply bg-purple-500;
-},
+ul li.nav-item {
+  @apply flex items-center;
+}
 
 nav #sub-nav ul li.mobile-menu {
   @apply block sm:hidden;
@@ -90,20 +85,29 @@ nav #sub-nav ul li button {
   opacity: 1;
 }
 
-.nav-part ul li a.mobile-nav-item {
-  @apply my-1;
+ul li a.mobile-nav-item {
+  @apply p-0 my-3;
 }
 
 .enabled {
   @apply dark:bg-purple-700;
 }
 
+#mobile-nav {
+  overflow: hidden;
+  min-height: 0px;
+  height: 0;
+}
+
+.mobile-button {
+  @apply p-2 py-4;
+  font-size: 30px;
+}
 </style>
 
 <script>
 import Fa from "svelte-fa";
-import { faMoon } from "@fortawesome/free-solid-svg-icons"
-import { Menu } from "svelte-grommet-icons";
+import { faMoon, faBars } from "@fortawesome/free-solid-svg-icons"
 import { onMount } from "svelte";
 
 let navItems = [
@@ -132,7 +136,7 @@ function toggleTheme() {
 function toggleMobileNav() {
   const nav = document.getElementById("mobile-nav");
   if (nav.style.minHeight === "0px" || nav.style.minHeight === "") {
-    nav.style.minHeight = "55px";
+    nav.style.minHeight = "180px";
     nav.style.height = 0;
   } else {
     nav.style.minHeight = 0;
@@ -195,19 +199,30 @@ onMount(() => {
           class="nav-button"
           aria-label="dark theme toggler"><Fa icon={faMoon} /></button>
       </li>
-
-      <li class="mobile-menu">
+    </ul>
+  </div>
+  <div class="mobile-navbar">
+    <h1 class="brand">Simon</h1>
+    <ul>
+      <li class="nav-item">
+        <button
+          on:click="{toggleTheme}"
+          class="nav-button mobile-button"
+          aria-label="dark theme toggler"><Fa icon={faMoon} /></button>
+      </li>
+      <li class="nav-item">
         <button
           on:click="{toggleMobileNav}"
-          class="nav-button"
-          aria-label="mobile navigation"><Menu /></button>
+          class="nav-button mobile-button"
+          aria-label="mobile navigation">
+          <Fa class="mobile" icon={faBars}/>
+        </button>
       </li>
     </ul>
   </div>
-  <div id="mobile-nav" class="mobile-navbar nav-part">
-    <ul>
+    <ul id="mobile-nav" class="flex flex-col">
       {#each navItems as navItem}
-        <li class="nav-item">
+        <li class="nav-item float-right">
           <a
             on:click="{toggleMobileNav}"
             class="mobile-nav-item"
@@ -215,6 +230,5 @@ onMount(() => {
         </li>
       {/each}
     </ul>
-  </div>
 </nav>
 <div class="stay-fixed"></div>

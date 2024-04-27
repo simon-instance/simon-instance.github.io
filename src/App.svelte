@@ -3,8 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import;
-
 @font-face {
   font-family: "Daddy Rewind";
   src: url("./fonts/rewind.subset.ttf") format("truetype");
