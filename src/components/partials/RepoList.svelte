@@ -82,27 +82,29 @@ onMount(() => {
 });
 </script>
 
-<a id="wrapper-link" href="#wrapper"><h2 class="title">Projects</h2></a>
-<div id="wrapper">
-  {#await promise}
-    <p class="waitingOrFailed">Loading repositories...</p>
-  {:then projects}
-    <ul>
-      {#each Object.entries(projects) as [key, project]}
-        <li>
-          <a
-            href="{project.html_url}"
-            class:first="{key == 0}"
-            class="has-dark-mode"
-            target="_blank"
-            rel="noreferrer">
-            <h2>{project.name || "Geen naam"}</h2>
-            <p>{project.description || "Geen omschrijving"}</p>
-          </a>
-        </li>
-      {/each}
-    </ul>
-  {:catch error}
-    <p class="waitingOrFailed">{error}</p>
-  {/await}
+<div id="projects">
+  <a id="wrapper-link" href="#wrapper"><h2 class="title">Projects</h2></a>
+  <div id="wrapper">
+    {#await promise}
+      <p class="waitingOrFailed">Loading repositories...</p>
+    {:then projects}
+      <ul>
+        {#each Object.entries(projects) as [key, project]}
+          <li>
+            <a
+              href="{project.html_url}"
+              class:first="{key == 0}"
+              class="has-dark-mode"
+              target="_blank"
+              rel="noreferrer">
+              <h2>{project.name || "Geen naam"}</h2>
+              <p>{project.description || "Geen omschrijving"}</p>
+            </a>
+          </li>
+        {/each}
+      </ul>
+    {:catch error}
+      <p class="waitingOrFailed">{error}</p>
+    {/await}
+  </div>
 </div>

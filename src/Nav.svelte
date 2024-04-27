@@ -60,6 +60,10 @@ nav #sub-nav ul li.spacer {
   @apply hidden sm:block;
 }
 
+.nav-item .mobile-nav-item {
+  @apply bg-purple-500;
+},
+
 nav #sub-nav ul li.mobile-menu {
   @apply block sm:hidden;
 }
@@ -90,21 +94,33 @@ nav #sub-nav ul li button {
   @apply my-1;
 }
 
+.enabled {
+  @apply dark:bg-purple-700;
+}
+
 </style>
 
 <script>
 import Fa from "svelte-fa";
 import { faMoon } from "@fortawesome/free-solid-svg-icons"
 import { Menu } from "svelte-grommet-icons";
+import { onMount } from "svelte";
 
-const navItems = [
+let navItems = [
   {
-    name: "Home",
-    scrollTarget: "#home",
+    name: "What I offer",
+    scrollTarget: "#what-i-offer",
+    selected: true
   },
   {
-    name: "About",
-    uri: "#about",
+    name: "My experience",
+    scrollTarget: "#my-experience",
+    selected: false
+  },
+  {
+    name: "Projects",
+    scrollTarget: "#projects",
+    selected: false
   },
 ];
 
@@ -124,6 +140,42 @@ function toggleMobileNav() {
   }
 }
 
+window.onscroll = (e) => {
+  for (let i = 0; i < navItems.length; i++) {
+    const target = document.getElementById(navItems[i].scrollTarget.substring(1));
+    const targetRect = target.getBoundingClientRect();
+    const targetScrollTop = targetRect.top;
+    const targetHeight = targetRect.height;
+
+    if (
+      document.documentElement.scrollTop > targetScrollTop - 190
+      && (document.documentElement.scrollTop < targetScrollTop + targetHeight - 100 || navItems.length - 1 == i)
+    ) {
+      navItems[i].selected = true;
+      continue;
+    }
+    navItems[i].selected = false;
+  }
+}
+
+const scrollToSection = (targetElem) => {
+  const navHeight = document.getElementById("nav").offsetHeight;
+  if (targetElem) {
+    targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.scrollBy(0, targetElem.getBoundingClientRect().top - 100 - navHeight);
+  }
+}
+
+onMount(() => {
+  navItems.forEach(navItem => {
+    const target = navItem.scrollTarget;
+    const targetElem = document.getElementById(target.substring(1));
+    document.querySelector(`a[href="${target}"]`).addEventListener('click', (event) => {
+      event.preventDefault();
+      scrollToSection(targetElem);
+    });
+  });
+});
 </script>
 
 <nav id="nav">
@@ -132,7 +184,7 @@ function toggleMobileNav() {
     <ul id="ul">
       {#each navItems as navItem}
         <li class="nav-item">
-          <a href="{navItem.scrollTarget}"
+          <a class="{navItem.selected == true ? 'enabled' : ''}" href="{navItem.scrollTarget}"
             ><p>{navItem.name}</p></a>
         </li>
       {/each}

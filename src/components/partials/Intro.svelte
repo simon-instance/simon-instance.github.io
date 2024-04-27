@@ -1,8 +1,7 @@
 <style scoped lang="postcss">
   .content-container {
-    padding: 25px 35px;
+    @apply px-5 py-4 flex items-center;
     border-radius: 25px 25px 25px;
-    display: flex;
     position: relative;
     z-index: 1;
     overflow: hidden;
@@ -73,10 +72,10 @@
   }
 </style>
 
-<div class="container mx-auto">
-  <div>
-    <div class="content-container my-12">
-      <div class="flex-2" style="z-index: 2;">
+<div class="container">
+  <div class="mx-0">
+    <div class="content-container flex-col lg:flex-row my-12">
+      <div id="what-i-offer" class="lg:flex-2" style="z-index: 2;">
         <h1>What I offer</h1>
         <p>
           As a freelance developer, 
@@ -89,21 +88,21 @@
           This allows me to create websites that are both visually appealing and functionally efficient. I achieve this by ensuring smooth data flow between the user and the database, via a well-designed front-end.
         </p>
       </div>
-      <div class="flex-1 flex justify-center items-center">
+      <div class="flex-1 flex justify-center items-center pt-6 lg:pt-0">
         <div class="mx-10 my-auto wrench-container">
           <img class="html-tag" src="../img/wrench-tag.png" alt="tag">
         </div>
       </div>
     </div>
-    <div class="content-container alternative mb-12">
+    <div class="content-container flex-col md:flex-row alternative mb-12 justify-center">
       <div class="inline-block">
         <div class="purple-sphere sphere-1"></div>
         <div class="purple-sphere sphere-2"></div>
       </div>
-      <div class="flex-1 ml-12 mr-20 my-auto">
+      <div class="hidden md:block flex-1 ml-12 mr-20 my-auto">
         <img src="../img/ethereum.png" alt="tag">
       </div>
-      <div class="flex-3">
+      <div id="my-experience" class="flex-3">
         <h1>My experience</h1>
         <p>
           I'm Simon, a 22-year-old developer currently studying at HAN in Nijmegen. <br/>
@@ -117,12 +116,9 @@
           Are you ready to take on this journey with me? Reach out and lets turn your ideas into reality.
         </p>
       </div>
+      <div class="block md:hidden flex-1 mx-14 sm:mx-40 my-auto">
+        <img src="../img/ethereum.png" alt="tag">
+      </div>
     </div>
   </div>
-</div>
-
-<div class="root">
-  <!-- <div class="first me">
-    <img class="img" src="../img/me.jpeg" alt="photo_of_me" />
-  </div> -->
 </div>
